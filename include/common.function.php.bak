@@ -1,0 +1,76 @@
+<?php
+function check_input($str)
+	{
+		$str = str_replace("\r\n","",$str);
+    	$str = str_replace("\n","",$str);
+    	$str = str_replace("\r","",$str);
+    	$str = str_replace("'","&#39",$str);
+		$str = str_replace("\"","”",$str);
+    	$str = str_replace("<","＜",$str);
+    	$str = str_replace(">","＞",$str);
+		$str = str_replace("php","",$str);
+		//$str = str_replace("?","？",$str);
+		$str = str_replace("eval","",$str);
+		$str = str_replace("%","％",$str);
+		$str = str_replace("$","",$str);
+		$str = str_replace("script"," ",$str);
+		//$str = str_replace("="," ",$str);
+		$str = str_replace("and"," ",$str);
+		$str = str_replace("select"," ",$str); 
+		$str = str_replace("delete"," ",$str);
+		$str = str_replace("update"," ",$str);
+    	return  $str;
+	}
+//定义全局错误,运行过程中设为0，即不显示所有错误
+function validateIP($pInt)
+	{
+	   if(ereg('[^0-9.]', $pInt))
+	   {
+		 return false;
+	   } 
+	   else 
+	   {
+		 return true;
+	   }
+	}
+	
+	function IP_str()
+	{
+		if ($HTTP_SERVER_VARS["HTTP_X_FORWARDED_FOR"])
+		{
+			$ip = $HTTP_SERVER_VARS["HTTP_X_FORWARDED_FOR"];
+		}
+		elseif ($HTTP_SERVER_VARS["HTTP_CLIENT_IP"])
+		{
+			$ip = $HTTP_SERVER_VARS["HTTP_CLIENT_IP"];
+		}
+		elseif ($HTTP_SERVER_VARS["REMOTE_ADDR"])
+		{
+			$ip = $HTTP_SERVER_VARS["REMOTE_ADDR"];
+		}
+		elseif (getenv("HTTP_X_FORWARDED_FOR"))
+		{
+			$ip = getenv("HTTP_X_FORWARDED_FOR");
+		}
+		elseif (getenv("HTTP_CLIENT_IP"))
+		{
+			$ip = getenv("HTTP_CLIENT_IP");
+		}
+		elseif (getenv("REMOTE_ADDR"))
+		{
+			$ip = getenv("REMOTE_ADDR");
+		}
+		else
+		{
+			$ip = "Unknown";
+		}
+		$IPAdress        =  $ip;
+
+		if(!validateIP($IPAdress))
+		{
+			$IPAdress = "127.0.0.1";
+		}
+		return $IPAdress;
+	}
+
+?>
