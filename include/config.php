@@ -3,13 +3,13 @@
 define('DB_HOST','neimenggudb.mysql.rds.aliyuncs.com');
 //define('DB_HOST','localhost');
 //数据库用户名
-define('DB_USER','neimenggu');
+define('DB_USER','');
 //define('DB_USER','root');
 //数据库密码
-define('DB_PWD','Huatu_Neimenggu-1q2w');
+define('DB_PWD','');
 //define('DB_PWD','');
 //数据库名
-define('DB_NAME','neimenggu_db');
+define('DB_NAME','');
 //define('DB_NAME','vote');
 //表前缀
 //define('DB_PREFIX','');
