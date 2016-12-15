@@ -2,7 +2,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=gbk">
     <meta charset="UTF-8">
-    <title>ÅóÓÑÈ¦</title>
+    <title>æœ‹å‹åœˆ</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="moments.css">
@@ -17,7 +17,7 @@ $query = "select *  from dede_p_pinglun as n inner join dede_p_pd  as d on n.uid
 $identy = $pdo->query($query);
 $rows = $identy->fetchAll();
 
-//²éÑ¯uid
+//æŸ¥è¯¢uid
 $uidquery = "select n.uid from dede_p_pinglun as n inner join dede_p_pd  as d on n.uid = d.uid    ";
 $identy2 = $pdo->query($uidquery);
 $uidmap= $identy2->fetchAll();
@@ -30,11 +30,11 @@ foreach ($uidmap as $v)
 
 
 
-//»ñÈ¡ÍêÕûµÄurll
+//è·å–å®Œæ•´çš„urll
 $nowurl = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'];
-//·ÖÏí³ÌĞò
-$appid = 'wx59a5019fbc282cb0';
-$secret = 'f360712b887814e4f292b9926700b0e6';
+//åˆ†äº«ç¨‹åº
+$appid = 'wx59a5019fbc282cb0zhaojianbin123456';
+$secret = 'f360712b887814e4f292b9926700b0e6zhaojianbin123456';
 //$nowurl = 'http://bm.huatu.com/zt/2016/nmg/callback.php';
 $mem = new Memcache();
 $mem->connect('192.168.200.134', 11211);// or die ("Could not connect");
@@ -42,7 +42,7 @@ $num = $mem->get("nmgnum");
 if (empty($num)) $num = 0;
 $num++;
 $mem->set("nmgnum", $num);
-//»ñÈ¡ token
+//è·å– token
 $token = $mem->get("fenxiangnmg");
 $ticket = $mem->get("fxnmgtick");
 if (empty($token)) {
@@ -56,27 +56,27 @@ if (empty($token)) {
     $str2 = file_get_contents($url);
     $aaa = json_decode($str2, true);
 
-//»ñÈ¡ ticket
+//è·å– ticket
     $ticket = $aaa['ticket'];
     $mem->set("fxnmgtick", $ticket, 0, 5000);
 }
 // echo $token."--".$ticket ;
-$t = time(); //Éú³ÉÇ©ÃûµÄÊ±¼ä´Á
-$s = 'Wm3WZYTPz0wzccnW'; //Éú³ÉÇ©ÃûµÄËæ»ú´®
+$t = time(); //ç”Ÿæˆç­¾åçš„æ—¶é—´æˆ³
+$s = 'Wm3WZYTPz0wzccnW'; //ç”Ÿæˆç­¾åçš„éšæœºä¸²
 // $str2 = 'jsapi_ticket='.$ticket.'&noncestr=zdsgfdgDFGEFGJ&timestamp='.$t.'&url='.$nowurl;
 $strr = "jsapi_ticket=$ticket&noncestr=Wm3WZYTPz0wzccnW&timestamp=$t&url=$nowurl";
 $qm = sha1($strr);
-//»ñÈ¡ÓÃ»§Ãû
-//2 redirect_uri  Ò³Ãæ½ÓÊÜ´¦Àí£º
+//è·å–ç”¨æˆ·å
+//2 redirect_uri  é¡µé¢æ¥å—å¤„ç†ï¼š
 $code = $_GET['code'];
-//»ñÈ¡ token
+//è·å– token
 $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' . $appid . '&secret=' . $secret . '&code=' . $code . '&grant_type=authorization_code';
 $str = file_get_contents($url);
 $arr = json_decode($str, true);
 
 $tokena = $arr['access_token'];
 $openid = $arr['openid'];
-//3 ´òÓ¡ÓÃ»§ĞÅÏ¢
+//3 æ‰“å°ç”¨æˆ·ä¿¡æ¯
 $info = file_get_contents('https://api.weixin.qq.com/sns/userinfo?access_token=' . $tokena . '&openid=' . $openid . '&lang=zh_CN');
 $arruser = json_decode($info, true);
 
@@ -88,7 +88,7 @@ $imghead = rtrim($imghead, 0);
 $imghead132 = $imghead . '132';
 //echo "<script>location.href='http://bm.huatu.com/zt/2016/nmg/callback.php?uname=".$username."';</script>";
 // echo rand();
-// ½«ÓÃ»§µÄĞÅÏ¢´æÈëÊı¾İ¿â
+// å°†ç”¨æˆ·çš„ä¿¡æ¯å­˜å…¥æ•°æ®åº“
 $username = iconv('utf-8','gb2312',$username);
 
 $query2 ="insert into p_pyq_fxall (openid,nickname,headimgurl,uid) VALUES ('$openid','$username','$imghead','$uid');";
@@ -132,7 +132,7 @@ $identy3 = $pdo->query($query2);
                 ?>
                 <span class="time">
                     <?php
-                    $times = array('¸Õ¸Õ', 'Ê®·ÖÖÓÇ°', '°ëĞ¡Ê±Ç°', 'Ò»Ğ¡Ê±Ç°', 'ÈıĞ¡Ê±Ç°', 'ÎåĞ¡Ê±Ç°', 'ÁùĞ¡Ê±Ç°', '°ËĞ¡Ê±Ç°', 'Ê®Ğ¡Ê±Ç°', '×òÌì', '×òÌìÖ®Ç°');
+                    $times = array('åˆšåˆš', 'ååˆ†é’Ÿå‰', 'åŠå°æ—¶å‰', 'ä¸€å°æ—¶å‰', 'ä¸‰å°æ—¶å‰', 'äº”å°æ—¶å‰', 'å…­å°æ—¶å‰', 'å…«å°æ—¶å‰', 'åå°æ—¶å‰', 'æ˜¨å¤©', 'æ˜¨å¤©ä¹‹å‰');
                      echo $times[$pyq_time];
                      $pyq_time++;
                     ?>
@@ -151,7 +151,7 @@ $identy3 = $pdo->query($query2);
                     </div>
                     <div class="comment-content">
                         <strong>
-                            <?php  if (!empty($row['huiname1'])){echo $row['huiname1'].'»Ø¸´'.$row['name1'].':';}?>
+                            <?php  if (!empty($row['huiname1'])){echo $row['huiname1'].'å›å¤'.$row['name1'].':';}?>
                         </strong>
                             <?php  if (!empty($row['i_hui1'])){echo $row['i_hui1'];}?>
 
@@ -165,7 +165,7 @@ $identy3 = $pdo->query($query2);
                     </div>
                     <div class="comment-content">
                         <strong>
-                            <?php  if (!empty($row['huiname2'])){echo $row['huiname2'].'»Ø¸´'.$row['name2'].':';}?>
+                            <?php  if (!empty($row['huiname2'])){echo $row['huiname2'].'å›å¤'.$row['name2'].':';}?>
                         </strong>
 
                             <?php  if (!empty($row['i_hui2'])){echo $row['i_hui2'];}?>
@@ -180,7 +180,7 @@ $identy3 = $pdo->query($query2);
                     </div>
                     <div class="comment-content">
                         <strong>
-                            <?php  if (!empty($row['huiname3'])){echo $row['huiname3'].'»Ø¸´'.$row['name3'].':';}?>
+                            <?php  if (!empty($row['huiname3'])){echo $row['huiname3'].'å›å¤'.$row['name3'].':';}?>
                         </strong>
 
                             <?php  if (!empty($row['i_hui3'])){echo $row['i_hui3'];}?>
@@ -195,7 +195,7 @@ $identy3 = $pdo->query($query2);
                     </div>
                     <div class="comment-content">
                         <strong>
-                            <?php  if (!empty($row['huiname4'])){echo $row['huiname4'].'»Ø¸´'.$row['name4'].':';}?>
+                            <?php  if (!empty($row['huiname4'])){echo $row['huiname4'].'å›å¤'.$row['name4'].':';}?>
                         </strong>
                             <?php  if (!empty($row['i_hui4'])){echo $row['i_hui4'];}?>
 
@@ -210,7 +210,7 @@ $identy3 = $pdo->query($query2);
                     </div>
                     <div class="comment-content">
                         <strong>
-                            <?php  if (!empty($row['huiname5'])){echo $row['huiname5'].'»Ø¸´'.$row['name5'].':';}?>
+                            <?php  if (!empty($row['huiname5'])){echo $row['huiname5'].'å›å¤'.$row['name5'].':';}?>
                         </strong>
 
                             <?php  if (!empty($row['i_hui5'])){echo $row['i_hui5'];}?>
@@ -226,7 +226,7 @@ $identy3 = $pdo->query($query2);
                     </div>
                     <div class="comment-content">
                         <strong>
-                            <?php  if (!empty($row['huiname6'])){echo $row['huiname6'].'»Ø¸´'.$row['name6'].':';}?>
+                            <?php  if (!empty($row['huiname6'])){echo $row['huiname6'].'å›å¤'.$row['name6'].':';}?>
                         </strong>
 
                             <?php  if (!empty($row['i_hui6'])){echo $row['i_hui6'];}?>
@@ -246,53 +246,53 @@ $identy3 = $pdo->query($query2);
 ?>
 
 
-<button>Éú³ÉÎÒµÄÅóÓÑÈ¦</button>
-<div>£¨´¿ÊôĞé¹¹£¬½ö¹©ÓéÀÖ£©</div>
+<button>ç”Ÿæˆæˆ‘çš„æœ‹å‹åœˆ</button>
+<div>ï¼ˆçº¯å±è™šæ„ï¼Œä»…ä¾›å¨±ä¹ï¼‰</div>
 <script>
     wx.config({
-        debug: false, // ¿ªÆôµ÷ÊÔÄ£Ê½,µ÷ÓÃµÄËùÓĞapiµÄ·µ»ØÖµ»áÔÚ¿Í»§¶Ëalert³öÀ´£¬ÈôÒª²é¿´´«ÈëµÄ²ÎÊı£¬¿ÉÒÔÔÚpc¶Ë´ò¿ª£¬²ÎÊıĞÅÏ¢»áÍ¨¹ılog´ò³ö£¬½öÔÚpc¶ËÊ±²Å»á´òÓ¡¡£
-        appId: '<?=$appid?>', // ±ØÌî£¬¹«ÖÚºÅµÄÎ¨Ò»±êÊ¶
-        timestamp:<?=$t?>, // ±ØÌî£¬Éú³ÉÇ©ÃûµÄÊ±¼ä´Á
-        nonceStr: '<?=$s?>', // ±ØÌî£¬Éú³ÉÇ©ÃûµÄËæ»ú´®
-        signature: '<?=$qm?>',// ±ØÌî£¬Ç©Ãû£¬¼û¸½Â¼1
-        jsApiList: ['onMenuShareAppMessage','onMenuShareTimeline','checkJsApi'] // ±ØÌî£¬ĞèÒªÊ¹ÓÃµÄJS½Ó¿ÚÁĞ±í£¬ËùÓĞJS½Ó¿ÚÁĞ±í¼û¸½Â¼2
+        debug: false, // å¼€å¯è°ƒè¯•æ¨¡å¼,è°ƒç”¨çš„æ‰€æœ‰apiçš„è¿”å›å€¼ä¼šåœ¨å®¢æˆ·ç«¯alertå‡ºæ¥ï¼Œè‹¥è¦æŸ¥çœ‹ä¼ å…¥çš„å‚æ•°ï¼Œå¯ä»¥åœ¨pcç«¯æ‰“å¼€ï¼Œå‚æ•°ä¿¡æ¯ä¼šé€šè¿‡logæ‰“å‡ºï¼Œä»…åœ¨pcç«¯æ—¶æ‰ä¼šæ‰“å°ã€‚
+        appId: '<?=$appid?>', // å¿…å¡«ï¼Œå…¬ä¼—å·çš„å”¯ä¸€æ ‡è¯†
+        timestamp:<?=$t?>, // å¿…å¡«ï¼Œç”Ÿæˆç­¾åçš„æ—¶é—´æˆ³
+        nonceStr: '<?=$s?>', // å¿…å¡«ï¼Œç”Ÿæˆç­¾åçš„éšæœºä¸²
+        signature: '<?=$qm?>',// å¿…å¡«ï¼Œç­¾åï¼Œè§é™„å½•1
+        jsApiList: ['onMenuShareAppMessage','onMenuShareTimeline','checkJsApi'] // å¿…å¡«ï¼Œéœ€è¦ä½¿ç”¨çš„JSæ¥å£åˆ—è¡¨ï¼Œæ‰€æœ‰JSæ¥å£åˆ—è¡¨è§é™„å½•2
     });
 
-//·ÖÏíµ½ÅóÓÑÈ¦
+//åˆ†äº«åˆ°æœ‹å‹åœˆ
     var openid = document.getElementById('openid').value;
 
     wx.ready(function(){
 
         //console.log(123);
         wx.onMenuShareTimeline({
-            title: '<?php echo $username;?>µÄÅóÓÑÈ¦', // ·ÖÏí±êÌâ
-            desc: 'ËÙ¶ÈÀ´Î§¹ÛÕâ¸ö¸ß´óÉÏµÄÅóÓÑÈ¦£¬±¾À´¾¼¾¼ÓĞÉñµÄÑÛ¾¦ÒÑ¾­±»´ÌÏ¹£¡Ô­À´ËûÕâÃ´Å££¬ÎÒÔõÃ´²»ÖªµÀ£¡', // ·ÖÏíÃèÊö
+            title: '<?php echo $username;?>çš„æœ‹å‹åœˆ', // åˆ†äº«æ ‡é¢˜
+            desc: 'é€Ÿåº¦æ¥å›´è§‚è¿™ä¸ªé«˜å¤§ä¸Šçš„æœ‹å‹åœˆï¼Œæœ¬æ¥ç‚¯ç‚¯æœ‰ç¥çš„çœ¼ç›å·²ç»è¢«åˆºçï¼åŸæ¥ä»–è¿™ä¹ˆç‰›ï¼Œæˆ‘æ€ä¹ˆä¸çŸ¥é“ï¼', // åˆ†äº«æè¿°
             link: 'http://nmg.huatu.com/zt/pyq/pyq_fenxiang.php?openid='+openid,
-            // ·ÖÏíÁ´½Ó
-            imgUrl: '<?php echo $imghead;?>', // ·ÖÏíÍ¼±ê
+            // åˆ†äº«é“¾æ¥
+            imgUrl: '<?php echo $imghead;?>', // åˆ†äº«å›¾æ ‡
             success: function () {
-                // ÓÃ»§È·ÈÏ·ÖÏíºóÖ´ĞĞµÄ»Øµ÷º¯Êı
+                // ç”¨æˆ·ç¡®è®¤åˆ†äº«åæ‰§è¡Œçš„å›è°ƒå‡½æ•°
 
             },
             cancel: function () {
-                // ÓÃ»§È¡Ïû·ÖÏíºóÖ´ĞĞµÄ»Øµ÷º¯Êı
+                // ç”¨æˆ·å–æ¶ˆåˆ†äº«åæ‰§è¡Œçš„å›è°ƒå‡½æ•°
                 }
         });
-//·ÖÏíºÃÓÑ
+//åˆ†äº«å¥½å‹
         wx.onMenuShareAppMessage({
-            title: '<?php echo $username;?>µÄÅóÓÑÈ¦', // ·ÖÏí±êÌâ
-            desc: 'ËÙ¶ÈÀ´Î§¹ÛÕâ¸ö¸ß´óÉÏµÄÅóÓÑÈ¦£¬±¾À´¾¼¾¼ÓĞÉñµÄÑÛ¾¦ÒÑ¾­±»´ÌÏ¹£¡Ô­À´ËûÕâÃ´Å££¬ÎÒÔõÃ´²»ÖªµÀ£¡', // ·ÖÏíÃèÊö
+            title: '<?php echo $username;?>çš„æœ‹å‹åœˆ', // åˆ†äº«æ ‡é¢˜
+            desc: 'é€Ÿåº¦æ¥å›´è§‚è¿™ä¸ªé«˜å¤§ä¸Šçš„æœ‹å‹åœˆï¼Œæœ¬æ¥ç‚¯ç‚¯æœ‰ç¥çš„çœ¼ç›å·²ç»è¢«åˆºçï¼åŸæ¥ä»–è¿™ä¹ˆç‰›ï¼Œæˆ‘æ€ä¹ˆä¸çŸ¥é“ï¼', // åˆ†äº«æè¿°
             link: 'http://nmg.huatu.com/zt/pyq/pyq_fenxiang.php?openid='+openid,
-            // ·ÖÏíÁ´½Ó
-            imgUrl: '<?php echo $imghead;?>', // ·ÖÏíÍ¼±ê
-            type: '', // ·ÖÏíÀàĞÍ,music¡¢video»òlink£¬²»ÌîÄ¬ÈÏÎªlink
-            dataUrl: '', // Èç¹ûtypeÊÇmusic»òvideo£¬ÔòÒªÌá¹©Êı¾İÁ´½Ó£¬Ä¬ÈÏÎª¿Õ
+            // åˆ†äº«é“¾æ¥
+            imgUrl: '<?php echo $imghead;?>', // åˆ†äº«å›¾æ ‡
+            type: '', // åˆ†äº«ç±»å‹,musicã€videoæˆ–linkï¼Œä¸å¡«é»˜è®¤ä¸ºlink
+            dataUrl: '', // å¦‚æœtypeæ˜¯musicæˆ–videoï¼Œåˆ™è¦æä¾›æ•°æ®é“¾æ¥ï¼Œé»˜è®¤ä¸ºç©º
             success: function () {
                 //colog('');
                 //console.log();
             },
             cancel: function () {
-                // ÓÃ»§È¡Ïû·ÖÏíºóÖ´ĞĞµÄ»Øµ÷º¯Êı
+                // ç”¨æˆ·å–æ¶ˆåˆ†äº«åæ‰§è¡Œçš„å›è°ƒå‡½æ•°
             }
         });
     });
@@ -300,22 +300,22 @@ $identy3 = $pdo->query($query2);
 
     wx.error(function(res){
         alert('fail');
-        // configĞÅÏ¢ÑéÖ¤Ê§°Ü»áÖ´ĞĞerrorº¯Êı£¬ÈçÇ©Ãû¹ıÆÚµ¼ÖÂÑéÖ¤Ê§°Ü£¬¾ßÌå´íÎóĞÅÏ¢¿ÉÒÔ´ò¿ªconfigµÄdebugÄ£Ê½²é¿´£¬Ò²¿ÉÒÔÔÚ·µ»ØµÄres²ÎÊıÖĞ²é¿´£¬¶ÔÓÚSPA¿ÉÒÔÔÚÕâÀï¸üĞÂÇ©Ãû¡£
+        // configä¿¡æ¯éªŒè¯å¤±è´¥ä¼šæ‰§è¡Œerrorå‡½æ•°ï¼Œå¦‚ç­¾åè¿‡æœŸå¯¼è‡´éªŒè¯å¤±è´¥ï¼Œå…·ä½“é”™è¯¯ä¿¡æ¯å¯ä»¥æ‰“å¼€configçš„debugæ¨¡å¼æŸ¥çœ‹ï¼Œä¹Ÿå¯ä»¥åœ¨è¿”å›çš„reså‚æ•°ä¸­æŸ¥çœ‹ï¼Œå¯¹äºSPAå¯ä»¥åœ¨è¿™é‡Œæ›´æ–°ç­¾åã€‚
 
     });
 
     wx.checkJsApi({
-        jsApiList: ['chooseImage'], // ĞèÒª¼ì²âµÄJS½Ó¿ÚÁĞ±í£¬ËùÓĞJS½Ó¿ÚÁĞ±í¼û¸½Â¼2,
+        jsApiList: ['chooseImage'], // éœ€è¦æ£€æµ‹çš„JSæ¥å£åˆ—è¡¨ï¼Œæ‰€æœ‰JSæ¥å£åˆ—è¡¨è§é™„å½•2,
         success: function(res) {
             alert(res);
-            // ÒÔ¼üÖµ¶ÔµÄĞÎÊ½·µ»Ø£¬¿ÉÓÃµÄapiÖµtrue£¬²»¿ÉÓÃÎªfalse
-            // Èç£º{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
+            // ä»¥é”®å€¼å¯¹çš„å½¢å¼è¿”å›ï¼Œå¯ç”¨çš„apiå€¼trueï¼Œä¸å¯ç”¨ä¸ºfalse
+            // å¦‚ï¼š{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
         }
     });
 </script>
 <div style="display:none">
 
-    <!--°Ù¶ÈÍ³¼Æ-->
+    <!--ç™¾åº¦ç»Ÿè®¡-->
     <script>
         var _hmt = _hmt || [];
         (function () {
@@ -326,7 +326,7 @@ $identy3 = $pdo->query($query2);
         })();
     </script>
 
-    <!--°Ù¶ÈÍ³¼Æ½áÊø-->
+    <!--ç™¾åº¦ç»Ÿè®¡ç»“æŸ-->
 
     <script src='http://s78.cnzz.com/stat.php?id=443728&web_id=443728&show=pic' language='JavaScript'
             charset='gb2312'></script>
