@@ -1,27 +1,24 @@
 <?php
-//Êý¾Ý¿âÖ÷»ú
-//define('DB_HOST','192.168.12.47:3307');
+//æ•°æ®åº“ä¸»æœº
 define('DB_HOST','localhost');
-//Êý¾Ý¿âÓÃ»§Ãû
-//define('DB_USER','htdatabase04');
+//æ•°æ®åº“ç”¨æˆ·å
 define('DB_USER','root');
-//Êý¾Ý¿âÃÜÂë
-//define('DB_PWD','ht_$HGKif*(_database04');
+//æ•°æ®åº“å¯†ç 
 define('DB_PWD','');
-//Êý¾Ý¿âÃû
+//æ•°æ®åº“å
 //define('DB_NAME','vote');
 define('DB_NAME','vote');
-//±íÇ°×º
+//è¡¨å‰ç¼€
 //define('DB_PREFIX','');
-//±í×Ö¶Î¼¯
+//è¡¨å­—æ®µé›†
 //define('DB_CHARSET','utf8');
 // define("TABLE", "dede_zwk"); 
-//Ê±Çø
+//æ—¶åŒº
 define('TIMEZONE','PRC');
 define('WEB_ROOT',str_replace('\\','/',dirname(__FILE__)).'/');
 
-//ÊýÁ¿
+//æ•°é‡
 //define('REFRESH',7);
-//Ñ­»·´ÎÊý
+//å¾ªçŽ¯æ¬¡æ•°
 //define('LENGTH',8);
 ?>
