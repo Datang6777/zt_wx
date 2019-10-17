@@ -1,6 +1,6 @@
 <?php
 //数据库主机
-define('DB_HOST','neimenggudb.mysql.rds.aliyuncs.com');
+define('DB_HOST','');
 //define('DB_HOST','localhost');
 //数据库用户名
 define('DB_USER','');
